@@ -13,7 +13,9 @@ import torch.nn as nn
 # data
 # this is a supervised learning problem, so we need to have an input x, output y
 x = torch.tensor([[0,0], [0,1], [1,0], [1,1]], dtype=torch.float32)
-y = torch.tensor([0,1,1,0], dtype=torch.long)
+y = torch.tensor([0,1,1,0], dtype=torch.long).view(-1, 1)
+
+# tensor of size (4, 5, 2, 3) -> (20, 6)  .view(-1, 6)
 
 # print(x)
 # print(y)
@@ -39,8 +41,8 @@ model = nn.Sequential(nn.Linear(2, 3),
 # optimizer = torch.optim.SGD()
 
 # train loop
-lr = 0.001
-epochs = 1000
+lr = 0.08
+epochs = 3000
 # each epoch, we'll pass the data x through the model, capture the output, compare to loss, backprop the loss, upgrade gradients, repeat
 for epoch in range(epochs):
     # pass x through model
